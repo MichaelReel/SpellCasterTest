@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://c2gd6kbl7hbew"]
+
+[ext_resource type="Texture2D" uid="uid://dv5odjyipasr1" path="res://addons/kenney_particle_pack/light_01.png" id="1_dqvu7"]
+[ext_resource type="Script" path="res://SpellPoint.gd" id="1_rbena"]
+[ext_resource type="Texture2D" uid="uid://cpk3woamjy7qf" path="res://addons/kenney_particle_pack/light_03.png" id="2_hicmc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_js7dm"]
+radius = 32.0
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_uhigx"]
+properties/0/path = NodePath("ActivatedSprite:visible")
+properties/0/spawn = true
+properties/0/sync = true
+
+[node name="SpellPoint" type="Node2D"]
+script = ExtResource("1_rbena")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_js7dm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.125, 0.125)
+texture = ExtResource("1_dqvu7")
+
+[node name="ActivatedSprite" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(0.125, 0.125)
+texture = ExtResource("2_hicmc")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_uhigx")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

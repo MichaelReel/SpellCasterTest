@@ -19,6 +19,7 @@ var casting: bool = false
 @onready var spell_view_port: SubViewport = $SpellPanel/SubViewport
 @onready var wand_cursor: Node2D = $SpellPanel/SubViewport/WandCursor
 @onready var wand_trail: Line2D = $SpellPanel/SubViewport/Line2D
+@onready var spell_grid: Node2D = $SpellPanel/SubViewport/SpellGrid
 
 func _enter_tree() -> void:
 	set_multiplayer_authority(str(name).to_int())
@@ -45,10 +46,14 @@ func _unhandled_input(event: InputEvent) -> void:
 		if mouse_event.is_action_released("player_cast"):
 			# Stop drawing and cast spell
 			spell_draw_display.set_visible(false)
+			var casting_travel: int = wand_trail.get_point_count()
 			wand_trail.clear_points()
 			wand_cursor.position = Vector2(spell_view_port.size / 2)
+			var spell_casting: Array[Globals.MagicType] = spell_grid.complete_spell()
 			mouse_look_on = true
 			casting = false
+			
+			_trigger_spell(spell_casting, casting_travel)
 		
 		if mouse_event.is_action_pressed("player_look_while_casting"):
 			# Pause casting so we can look around
@@ -89,29 +94,35 @@ func _unhandled_input(event: InputEvent) -> void:
 func _physics_process(delta: float) -> void:
 	if not is_multiplayer_authority(): return
 	
-	# Add the gravity.
+	# Add the gravity
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 
-	# Handle Jump.
+	# Handle Jump
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = jump_velocity
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
+	# Get the input direction and handle the movement/deceleration
 	var input_dir: Vector2 = Input.get_vector("player_left", "player_right", "player_up", "player_down")
 	var direction: Vector3 = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
-#		velocity.x = direction.x * speed
-#		velocity.z = direction.z * speed
 		velocity.x = lerp(velocity.x, direction.x * speed, _ANIM_LERP)
 		velocity.z = lerp(velocity.z, direction.z * speed, _ANIM_LERP)
 	else:
-#		velocity.x = move_toward(velocity.x, 0, speed)
-#		velocity.z = move_toward(velocity.z, 0, speed)
 		velocity.x = lerp(velocity.x, 0.0, _ANIM_LERP)
 		velocity.z = lerp(velocity.z, 0.0, _ANIM_LERP)
 
 	anim_tree.set("parameters/BlendSpace1D/blend_position", velocity.length() / speed)
 
 	move_and_slide()
+
+func _trigger_spell(spell_casting: Array[Globals.MagicType], casting_travel: int) -> void:
+	var spell_key: String = _get_spell_key(spell_casting)
+	print("Spell Key: " + spell_key + ", Casting Travel: " + str(casting_travel))
+	
+
+func _get_spell_key(spell_casting: Array[Globals.MagicType]) -> String:
+	var key: String = ""
+	for cast_point in spell_casting:
+		key += Globals.KEY_COMPONENTS[cast_point]
+	return key

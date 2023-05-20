@@ -1,7 +1,9 @@
-[gd_scene load_steps=25 format=3 uid="uid://7fjviffqcdts"]
+[gd_scene load_steps=29 format=3 uid="uid://7fjviffqcdts"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_41yyr"]
 [ext_resource type="Texture2D" uid="uid://qw6ysm5ytgmr" path="res://addons/kenney_particle_pack/star_04.png" id="2_fhq5x"]
+[ext_resource type="PackedScene" uid="uid://c2gd6kbl7hbew" path="res://SpellPoint.tscn" id="3_4gaw5"]
+[ext_resource type="Script" path="res://SpellGrid.gd" id="3_8g8g8"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_jxqk7"]
 
@@ -21,7 +23,7 @@ albedo_texture = SubResource("ViewportTexture_vbk7m")
 [sub_resource type="QuadMesh" id="QuadMesh_obqf4"]
 resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_4e7k4")
-size = Vector2(1.75, 1)
+size = Vector2(1.778, 1)
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_l81ae"]
 properties/0/path = NodePath(".:position")
@@ -960,11 +962,14 @@ blend_point_1/pos = 1.0
 min_space = 0.0
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_3hwgw"]
-graph_offset = Vector2(207, -19)
 nodes/BlendSpace1D/node = SubResource("AnimationNodeBlendSpace1D_riwsq")
 nodes/BlendSpace1D/position = Vector2(642, 183)
 nodes/output/position = Vector2(980, 120)
 node_connections = [&"output", 0, &"BlendSpace1D"]
+
+[sub_resource type="Curve" id="Curve_4076j"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_smjq2"]
 offsets = PackedFloat32Array(0, 0.5, 1)
@@ -993,6 +998,9 @@ orbit_velocity_max = 0.0
 scale_min = 0.5
 scale_curve = SubResource("CurveTexture_125ls")
 color_ramp = SubResource("GradientTexture1D_q2nko")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dcimq"]
+radius = 2.0
 
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 2
@@ -1027,7 +1035,7 @@ bones/0/name = "body"
 bones/0/parent = -1
 bones/0/rest = Transform3D(1, 0, 0, 0, 0.999651, -0.0264089, 0, 0.0264089, 0.999651, 0, 0.966626, 0)
 bones/0/enabled = true
-bones/0/position = Vector3(0, 0.966412, 3.69609e-10)
+bones/0/position = Vector3(0, 0.966236, 2.53396e-10)
 bones/0/rotation = Quaternion(0.0132056, 0, 0, 0.999913)
 bones/0/scale = Vector3(1, 1, 1)
 bones/1/name = "head"
@@ -1042,14 +1050,14 @@ bones/2/parent = 0
 bones/2/rest = Transform3D(-0.995922, 0.0903113, 0.00422171, -0.0903799, -0.995705, -0.0200596, 0.00239202, -0.0203589, 0.999791, 0.16467, 0.466773, -0.0406266)
 bones/2/enabled = true
 bones/2/position = Vector3(0.16467, 0.466773, -0.0406266)
-bones/2/rotation = Quaternion(0.0113737, -0.0161347, 0.997477, -0.0681922)
+bones/2/rotation = Quaternion(0.0114125, -0.0161672, 0.997472, -0.0682475)
 bones/2/scale = Vector3(1.00002, 1, 1)
 bones/3/name = "lower_arm.l"
 bones/3/parent = 2
 bones/3/rest = Transform3D(0.999934, -0.0112142, 0.00240993, 0.0114577, 0.966758, -0.255435, 0.000534668, 0.255446, 0.966823, -3.31818e-08, 0.300149, 1.33878e-09)
 bones/3/enabled = true
 bones/3/position = Vector3(-3.31818e-08, 0.300149, 1.33878e-09)
-bones/3/rotation = Quaternion(0.130453, 0.00178657, 0.00280256, 0.991449)
+bones/3/rotation = Quaternion(0.130528, 0.00184638, 0.0026699, 0.991439)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/name = "palm.l"
 bones/4/parent = 3
@@ -1077,21 +1085,21 @@ bones/7/parent = 0
 bones/7/rest = Transform3D(-0.999937, 0.0107817, 0.00322216, -0.0105468, -0.997784, 0.0656982, 0.00392334, 0.0656597, 0.997839, 0.10701, 0.0392548, -0.00103688)
 bones/7/enabled = true
 bones/7/position = Vector3(0.10701, 0.0392548, -0.00103688)
-bones/7/rotation = Quaternion(0.048672, 0.03354, 0.998226, -0.00715407)
+bones/7/rotation = Quaternion(0.0486721, 0.0335523, 0.998225, -0.00715783)
 bones/7/scale = Vector3(1, 1, 1)
 bones/8/name = "shin.l"
 bones/8/parent = 7
 bones/8/rest = Transform3D(0.99951, 0.0310582, 0.00380232, -0.0312901, 0.992102, 0.121468, 2.93599e-07, -0.121527, 0.992588, 3.67436e-09, 0.467078, 1.83354e-09)
 bones/8/enabled = true
 bones/8/position = Vector3(3.67436e-09, 0.467078, 1.83354e-09)
-bones/8/rotation = Quaternion(-0.0631083, 0.000952248, -0.0161924, 0.997875)
+bones/8/rotation = Quaternion(-0.0632184, 0.000952245, -0.0162207, 0.997868)
 bones/8/scale = Vector3(1, 1, 1)
 bones/9/name = "foot.l"
 bones/9/parent = 8
 bones/9/rest = Transform3D(0.988882, -0.0235819, 0.146821, 0.147601, 0.0356712, -0.988404, 0.0180712, 0.999085, 0.0387554, 9.11314e-09, 0.511159, -4.56203e-09)
 bones/9/enabled = true
 bones/9/position = Vector3(9.11314e-09, 0.511159, -4.56203e-09)
-bones/9/rotation = Quaternion(0.689425, 0.137208, 0.0845555, 0.7062)
+bones/9/rotation = Quaternion(0.689479, 0.137216, 0.0845812, 0.706142)
 bones/9/scale = Vector3(1, 1, 1)
 bones/10/name = "toe.l"
 bones/10/parent = 9
@@ -1105,14 +1113,14 @@ bones/11/parent = 0
 bones/11/rest = Transform3D(-0.995922, -0.0903113, -0.00422171, 0.0903799, -0.995705, -0.0200596, -0.00239202, -0.0203589, 0.999791, -0.16467, 0.466773, -0.0406266)
 bones/11/enabled = true
 bones/11/position = Vector3(-0.16467, 0.466773, -0.0406266)
-bones/11/rotation = Quaternion(-0.0162565, -0.00284882, 0.996757, 0.0787587)
+bones/11/rotation = Quaternion(-0.0163352, -0.00279684, 0.996748, 0.0788605)
 bones/11/scale = Vector3(1.00002, 1, 1)
 bones/12/name = "lower_arm.r"
 bones/12/parent = 11
 bones/12/rest = Transform3D(0.999934, 0.0112142, -0.00240993, -0.0114577, 0.966758, -0.255435, -0.000534668, 0.255446, 0.966823, 3.31818e-08, 0.300149, 1.33878e-09)
 bones/12/enabled = true
 bones/12/position = Vector3(3.31818e-08, 0.300149, 1.33878e-09)
-bones/12/rotation = Quaternion(0.128046, -0.0019041, -0.00210781, 0.991764)
+bones/12/rotation = Quaternion(0.128013, -0.00196927, -0.00194353, 0.991769)
 bones/12/scale = Vector3(1, 1, 1)
 bones/13/name = "palm.r"
 bones/13/parent = 12
@@ -1140,21 +1148,21 @@ bones/16/parent = 0
 bones/16/rest = Transform3D(-0.999937, -0.0107817, -0.00322216, 0.0105468, -0.997784, 0.0656982, -0.00392334, 0.0656597, 0.997839, -0.10701, 0.0392548, -0.00103688)
 bones/16/enabled = true
 bones/16/position = Vector3(-0.10701, 0.0392548, -0.00103688)
-bones/16/rotation = Quaternion(-0.048672, 0.03354, 0.998226, 0.00715407)
+bones/16/rotation = Quaternion(-0.0486721, 0.0335523, 0.998225, 0.00715783)
 bones/16/scale = Vector3(1, 1, 1)
 bones/17/name = "shin.r"
 bones/17/parent = 16
 bones/17/rest = Transform3D(0.99951, -0.0310582, -0.00380232, 0.0312901, 0.992102, 0.121468, -2.93599e-07, -0.121527, 0.992588, -3.67436e-09, 0.467078, 1.83354e-09)
 bones/17/enabled = true
 bones/17/position = Vector3(-3.67436e-09, 0.467078, 1.83354e-09)
-bones/17/rotation = Quaternion(-0.0631083, -0.000952248, 0.0161924, 0.997875)
+bones/17/rotation = Quaternion(-0.0632184, -0.000952243, 0.0162207, 0.997868)
 bones/17/scale = Vector3(1, 1, 1)
 bones/18/name = "foot.r"
 bones/18/parent = 17
 bones/18/rest = Transform3D(0.988882, 0.0235819, -0.146821, -0.147601, 0.0356712, -0.988404, -0.0180712, 0.999085, 0.0387554, -9.11314e-09, 0.511159, -4.56203e-09)
 bones/18/enabled = true
 bones/18/position = Vector3(-9.11314e-09, 0.511159, -4.56203e-09)
-bones/18/rotation = Quaternion(0.689425, -0.137208, -0.0845559, 0.7062)
+bones/18/rotation = Quaternion(0.689479, -0.137216, -0.084581, 0.706142)
 bones/18/scale = Vector3(1, 1, 1)
 bones/19/name = "toe.r"
 bones/19/parent = 18
@@ -1269,9 +1277,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.65, -1)
 [node name="SubViewport" type="SubViewport" parent="SpellPanel"]
 transparent_bg = true
 size = Vector2i(1152, 648)
+render_target_update_mode = 4
 
 [node name="Line2D" type="Line2D" parent="SpellPanel/SubViewport"]
 width = 20.0
+width_curve = SubResource("Curve_4076j")
 default_color = Color(0.776471, 0.0313726, 0.00784314, 1)
 joint_mode = 2
 begin_cap_mode = 2
@@ -1284,3 +1294,30 @@ position = Vector2(576, 324)
 amount = 16
 process_material = SubResource("ParticleProcessMaterial_vxpnq")
 texture = ExtResource("2_fhq5x")
+
+[node name="Area2D" type="Area2D" parent="SpellPanel/SubViewport/WandCursor"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpellPanel/SubViewport/WandCursor/Area2D"]
+shape = SubResource("CircleShape2D_dcimq")
+
+[node name="SpellGrid" type="Node2D" parent="SpellPanel/SubViewport"]
+position = Vector2(576, 324)
+script = ExtResource("3_8g8g8")
+
+[node name="FirePoint" parent="SpellPanel/SubViewport/SpellGrid" instance=ExtResource("3_4gaw5")]
+position = Vector2(0, -150)
+color = Color(0.823529, 0.184314, 0, 1)
+type = 0
+
+[node name="AirPoint" parent="SpellPanel/SubViewport/SpellGrid" instance=ExtResource("3_4gaw5")]
+position = Vector2(-150, 150)
+color = Color(0.466667, 0.427451, 0.972549, 1)
+
+[node name="WaterPoint" parent="SpellPanel/SubViewport/SpellGrid" instance=ExtResource("3_4gaw5")]
+position = Vector2(150, 150)
+color = Color(0.14902, 0.286275, 0.941176, 1)
+type = 2
+
+[connection signal="point_activated" from="SpellPanel/SubViewport/SpellGrid/FirePoint" to="SpellPanel/SubViewport/SpellGrid" method="_on_point_activated"]
+[connection signal="point_activated" from="SpellPanel/SubViewport/SpellGrid/AirPoint" to="SpellPanel/SubViewport/SpellGrid" method="_on_point_activated"]
+[connection signal="point_activated" from="SpellPanel/SubViewport/SpellGrid/WaterPoint" to="SpellPanel/SubViewport/SpellGrid" method="_on_point_activated"]
