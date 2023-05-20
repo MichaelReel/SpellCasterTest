@@ -18,6 +18,7 @@ var _enet_peer = ENetMultiplayerPeer.new()
 @onready var upnp_result: UPNPResult = UPNPResult.new()
 @onready var status_label: Label = $StatusLabel
 @onready var join_button: Button = $CanvasLayer/MainMenu/MarginContainer/VBoxContainer/JoinButton
+@onready var spell_manager: Node = $SpellManager
 
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("quit"):
@@ -48,6 +49,7 @@ func _on_address_entry_text_changed(new_text: String):
 func add_player(peer_id: int) -> void:
 	var player = Player.instantiate()
 	player.name = str(peer_id)
+	spell_manager.register_caster(player)
 	add_child(player)
 
 func remove_player(peer_id: int) -> void:

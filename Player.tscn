@@ -1035,7 +1035,7 @@ bones/0/name = "body"
 bones/0/parent = -1
 bones/0/rest = Transform3D(1, 0, 0, 0, 0.999651, -0.0264089, 0, 0.0264089, 0.999651, 0, 0.966626, 0)
 bones/0/enabled = true
-bones/0/position = Vector3(0, 0.966236, 2.53396e-10)
+bones/0/position = Vector3(0, 0.966386, 4.12979e-10)
 bones/0/rotation = Quaternion(0.0132056, 0, 0, 0.999913)
 bones/0/scale = Vector3(1, 1, 1)
 bones/1/name = "head"
@@ -1050,14 +1050,14 @@ bones/2/parent = 0
 bones/2/rest = Transform3D(-0.995922, 0.0903113, 0.00422171, -0.0903799, -0.995705, -0.0200596, 0.00239202, -0.0203589, 0.999791, 0.16467, 0.466773, -0.0406266)
 bones/2/enabled = true
 bones/2/position = Vector3(0.16467, 0.466773, -0.0406266)
-bones/2/rotation = Quaternion(0.0114125, -0.0161672, 0.997472, -0.0682475)
+bones/2/rotation = Quaternion(0.0115944, -0.0163195, 0.99745, -0.0685073)
 bones/2/scale = Vector3(1.00002, 1, 1)
 bones/3/name = "lower_arm.l"
 bones/3/parent = 2
 bones/3/rest = Transform3D(0.999934, -0.0112142, 0.00240993, 0.0114577, 0.966758, -0.255435, 0.000534668, 0.255446, 0.966823, -3.31818e-08, 0.300149, 1.33878e-09)
 bones/3/enabled = true
 bones/3/position = Vector3(-3.31818e-08, 0.300149, 1.33878e-09)
-bones/3/rotation = Quaternion(0.130528, 0.00184638, 0.0026699, 0.991439)
+bones/3/rotation = Quaternion(0.13086, 0.00210987, 0.00208567, 0.991396)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/name = "palm.l"
 bones/4/parent = 3
@@ -1085,21 +1085,21 @@ bones/7/parent = 0
 bones/7/rest = Transform3D(-0.999937, 0.0107817, 0.00322216, -0.0105468, -0.997784, 0.0656982, 0.00392334, 0.0656597, 0.997839, 0.10701, 0.0392548, -0.00103688)
 bones/7/enabled = true
 bones/7/position = Vector3(0.10701, 0.0392548, -0.00103688)
-bones/7/rotation = Quaternion(0.0486721, 0.0335523, 0.998225, -0.00715783)
+bones/7/rotation = Quaternion(0.0486724, 0.0338366, 0.998215, -0.00724552)
 bones/7/scale = Vector3(1, 1, 1)
 bones/8/name = "shin.l"
 bones/8/parent = 7
 bones/8/rest = Transform3D(0.99951, 0.0310582, 0.00380232, -0.0312901, 0.992102, 0.121468, 2.93599e-07, -0.121527, 0.992588, 3.67436e-09, 0.467078, 1.83354e-09)
 bones/8/enabled = true
 bones/8/position = Vector3(3.67436e-09, 0.467078, 1.83354e-09)
-bones/8/rotation = Quaternion(-0.0632184, 0.000952245, -0.0162207, 0.997868)
+bones/8/rotation = Quaternion(-0.0637404, 0.000952207, -0.0163546, 0.997832)
 bones/8/scale = Vector3(1, 1, 1)
 bones/9/name = "foot.l"
 bones/9/parent = 8
 bones/9/rest = Transform3D(0.988882, -0.0235819, 0.146821, 0.147601, 0.0356712, -0.988404, 0.0180712, 0.999085, 0.0387554, 9.11314e-09, 0.511159, -4.56203e-09)
 bones/9/enabled = true
 bones/9/position = Vector3(9.11314e-09, 0.511159, -4.56203e-09)
-bones/9/rotation = Quaternion(0.689479, 0.137216, 0.0845812, 0.706142)
+bones/9/rotation = Quaternion(0.689635, 0.137238, 0.0846558, 0.705977)
 bones/9/scale = Vector3(1, 1, 1)
 bones/10/name = "toe.l"
 bones/10/parent = 9
@@ -1113,14 +1113,14 @@ bones/11/parent = 0
 bones/11/rest = Transform3D(-0.995922, -0.0903113, -0.00422171, 0.0903799, -0.995705, -0.0200596, -0.00239202, -0.0203589, 0.999791, -0.16467, 0.466773, -0.0406266)
 bones/11/enabled = true
 bones/11/position = Vector3(-0.16467, 0.466773, -0.0406266)
-bones/11/rotation = Quaternion(-0.0163352, -0.00279684, 0.996748, 0.0788605)
+bones/11/rotation = Quaternion(-0.0164107, -0.00274681, 0.996739, 0.0789585)
 bones/11/scale = Vector3(1.00002, 1, 1)
 bones/12/name = "lower_arm.r"
 bones/12/parent = 11
 bones/12/rest = Transform3D(0.999934, 0.0112142, -0.00240993, -0.0114577, 0.966758, -0.255435, -0.000534668, 0.255446, 0.966823, 3.31818e-08, 0.300149, 1.33878e-09)
 bones/12/enabled = true
 bones/12/position = Vector3(3.31818e-08, 0.300149, 1.33878e-09)
-bones/12/rotation = Quaternion(0.128013, -0.00196927, -0.00194353, 0.991769)
+bones/12/rotation = Quaternion(0.127862, -0.00225633, -0.00121993, 0.991789)
 bones/12/scale = Vector3(1, 1, 1)
 bones/13/name = "palm.r"
 bones/13/parent = 12
@@ -1148,21 +1148,21 @@ bones/16/parent = 0
 bones/16/rest = Transform3D(-0.999937, -0.0107817, -0.00322216, 0.0105468, -0.997784, 0.0656982, -0.00392334, 0.0656597, 0.997839, -0.10701, 0.0392548, -0.00103688)
 bones/16/enabled = true
 bones/16/position = Vector3(-0.10701, 0.0392548, -0.00103688)
-bones/16/rotation = Quaternion(-0.0486721, 0.0335523, 0.998225, 0.00715783)
+bones/16/rotation = Quaternion(-0.0486724, 0.0338366, 0.998215, 0.00724552)
 bones/16/scale = Vector3(1, 1, 1)
 bones/17/name = "shin.r"
 bones/17/parent = 16
 bones/17/rest = Transform3D(0.99951, -0.0310582, -0.00380232, 0.0312901, 0.992102, 0.121468, -2.93599e-07, -0.121527, 0.992588, -3.67436e-09, 0.467078, 1.83354e-09)
 bones/17/enabled = true
 bones/17/position = Vector3(-3.67436e-09, 0.467078, 1.83354e-09)
-bones/17/rotation = Quaternion(-0.0632184, -0.000952243, 0.0162207, 0.997868)
+bones/17/rotation = Quaternion(-0.0637404, -0.000952207, 0.0163546, 0.997832)
 bones/17/scale = Vector3(1, 1, 1)
 bones/18/name = "foot.r"
 bones/18/parent = 17
 bones/18/rest = Transform3D(0.988882, 0.0235819, -0.146821, -0.147601, 0.0356712, -0.988404, -0.0180712, 0.999085, 0.0387554, -9.11314e-09, 0.511159, -4.56203e-09)
 bones/18/enabled = true
 bones/18/position = Vector3(-9.11314e-09, 0.511159, -4.56203e-09)
-bones/18/rotation = Quaternion(0.689479, -0.137216, -0.084581, 0.706142)
+bones/18/rotation = Quaternion(0.689635, -0.137238, -0.0846561, 0.705977)
 bones/18/scale = Vector3(1, 1, 1)
 bones/19/name = "toe.r"
 bones/19/parent = 18
@@ -1304,20 +1304,54 @@ shape = SubResource("CircleShape2D_dcimq")
 position = Vector2(576, 324)
 script = ExtResource("3_8g8g8")
 
-[node name="FirePoint" parent="SpellPanel/SubViewport/SpellGrid" instance=ExtResource("3_4gaw5")]
+[node name="Inner" type="Node2D" parent="SpellPanel/SubViewport/SpellGrid"]
+
+[node name="FirePoint" parent="SpellPanel/SubViewport/SpellGrid/Inner" instance=ExtResource("3_4gaw5")]
 position = Vector2(0, -150)
 color = Color(0.823529, 0.184314, 0, 1)
 type = 0
 
-[node name="AirPoint" parent="SpellPanel/SubViewport/SpellGrid" instance=ExtResource("3_4gaw5")]
-position = Vector2(-150, 150)
-color = Color(0.466667, 0.427451, 0.972549, 1)
+[node name="AirPoint" parent="SpellPanel/SubViewport/SpellGrid/Inner" instance=ExtResource("3_4gaw5")]
+position = Vector2(-134.1, 67.05)
+color = Color(0.133333, 0.717647, 0.678431, 1)
 
-[node name="WaterPoint" parent="SpellPanel/SubViewport/SpellGrid" instance=ExtResource("3_4gaw5")]
-position = Vector2(150, 150)
+[node name="WaterPoint" parent="SpellPanel/SubViewport/SpellGrid/Inner" instance=ExtResource("3_4gaw5")]
+position = Vector2(134.1, 67.05)
 color = Color(0.14902, 0.286275, 0.941176, 1)
 type = 2
 
-[connection signal="point_activated" from="SpellPanel/SubViewport/SpellGrid/FirePoint" to="SpellPanel/SubViewport/SpellGrid" method="_on_point_activated"]
-[connection signal="point_activated" from="SpellPanel/SubViewport/SpellGrid/AirPoint" to="SpellPanel/SubViewport/SpellGrid" method="_on_point_activated"]
-[connection signal="point_activated" from="SpellPanel/SubViewport/SpellGrid/WaterPoint" to="SpellPanel/SubViewport/SpellGrid" method="_on_point_activated"]
+[node name="Outer" type="Node2D" parent="SpellPanel/SubViewport/SpellGrid"]
+
+[node name="EarthPoint" parent="SpellPanel/SubViewport/SpellGrid/Outer" instance=ExtResource("3_4gaw5")]
+position = Vector2(0, 300)
+color = Color(0.486275, 0.360784, 0.121569, 1)
+type = 3
+
+[node name="SpiritPoint" parent="SpellPanel/SubViewport/SpellGrid/Outer" instance=ExtResource("3_4gaw5")]
+position = Vector2(-286.5, 88.5)
+color = Color(0.717647, 0.0980392, 0.776471, 1)
+type = 4
+
+[node name="BloodPoint" parent="SpellPanel/SubViewport/SpellGrid/Outer" instance=ExtResource("3_4gaw5")]
+position = Vector2(-188.7, -233.1)
+color = Color(0.552941, 0, 0, 1)
+type = 5
+
+[node name="LightningPoint" parent="SpellPanel/SubViewport/SpellGrid/Outer" instance=ExtResource("3_4gaw5")]
+position = Vector2(188.7, -233.1)
+color = Color(0.647059, 0.74902, 0.996078, 1)
+type = 6
+
+[node name="ThrustPoint" parent="SpellPanel/SubViewport/SpellGrid/Outer" instance=ExtResource("3_4gaw5")]
+position = Vector2(286.5, 88.5)
+color = Color(0.0588235, 0.372549, 0.0901961, 1)
+type = 7
+
+[connection signal="point_activated" from="SpellPanel/SubViewport/SpellGrid/Inner/FirePoint" to="SpellPanel/SubViewport/SpellGrid" method="_on_point_activated"]
+[connection signal="point_activated" from="SpellPanel/SubViewport/SpellGrid/Inner/AirPoint" to="SpellPanel/SubViewport/SpellGrid" method="_on_point_activated"]
+[connection signal="point_activated" from="SpellPanel/SubViewport/SpellGrid/Inner/WaterPoint" to="SpellPanel/SubViewport/SpellGrid" method="_on_point_activated"]
+[connection signal="point_activated" from="SpellPanel/SubViewport/SpellGrid/Outer/EarthPoint" to="SpellPanel/SubViewport/SpellGrid" method="_on_point_activated"]
+[connection signal="point_activated" from="SpellPanel/SubViewport/SpellGrid/Outer/SpiritPoint" to="SpellPanel/SubViewport/SpellGrid" method="_on_point_activated"]
+[connection signal="point_activated" from="SpellPanel/SubViewport/SpellGrid/Outer/BloodPoint" to="SpellPanel/SubViewport/SpellGrid" method="_on_point_activated"]
+[connection signal="point_activated" from="SpellPanel/SubViewport/SpellGrid/Outer/LightningPoint" to="SpellPanel/SubViewport/SpellGrid" method="_on_point_activated"]
+[connection signal="point_activated" from="SpellPanel/SubViewport/SpellGrid/Outer/ThrustPoint" to="SpellPanel/SubViewport/SpellGrid" method="_on_point_activated"]

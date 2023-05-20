@@ -4,9 +4,14 @@ extends Node2D
 var current_casting: Array[Globals.MagicType] = []
 
 @onready var spell_points: Array[Node] = [
-	$FirePoint,
-	$AirPoint,
-	$WaterPoint,
+	$Inner/FirePoint,
+	$Inner/AirPoint,
+	$Inner/WaterPoint,
+	$Outer/EarthPoint,
+	$Outer/SpiritPoint,
+	$Outer/BloodPoint,
+	$Outer/LightningPoint,
+	$Outer/ThrustPoint,
 ]
 
 func complete_spell() -> Array[Globals.MagicType]:

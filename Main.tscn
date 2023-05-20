@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://608hnjhhx8hy"]
+[gd_scene load_steps=7 format=3 uid="uid://608hnjhhx8hy"]
 
 [ext_resource type="PackedScene" uid="uid://ujovplolo4sk" path="res://Arena.tscn" id="1_ddlhg"]
 [ext_resource type="Script" path="res://Main.gd" id="1_xrmba"]
+[ext_resource type="Script" path="res://SpellManager.gd" id="3_lntko"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ivr0l"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -81,6 +82,9 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 69.0
 grow_horizontal = 2
+
+[node name="SpellManager" type="Node" parent="."]
+script = ExtResource("3_lntko")
 
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]

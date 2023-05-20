@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+signal spell_cast(caster: Node3D, spell_key: String, casting_travel: int)
+
 const _ANIM_LERP: float = 0.15
 const _SQUARED_DRAW_RESOLUTION: float = 20.0
 
@@ -15,7 +17,6 @@ var casting: bool = false
 @onready var camera: Camera3D = $Camera3D
 @onready var anim_tree: AnimationTree = $AnimationTree
 @onready var spell_draw_display: MeshInstance3D = $Camera3D/SpellDrawDisplay
-
 @onready var spell_view_port: SubViewport = $SpellPanel/SubViewport
 @onready var wand_cursor: Node2D = $SpellPanel/SubViewport/WandCursor
 @onready var wand_trail: Line2D = $SpellPanel/SubViewport/Line2D
@@ -113,13 +114,11 @@ func _physics_process(delta: float) -> void:
 		velocity.z = lerp(velocity.z, 0.0, _ANIM_LERP)
 
 	anim_tree.set("parameters/BlendSpace1D/blend_position", velocity.length() / speed)
-
 	move_and_slide()
 
 func _trigger_spell(spell_casting: Array[Globals.MagicType], casting_travel: int) -> void:
 	var spell_key: String = _get_spell_key(spell_casting)
-	print("Spell Key: " + spell_key + ", Casting Travel: " + str(casting_travel))
-	
+	emit_signal("spell_cast", self, spell_key, casting_travel)
 
 func _get_spell_key(spell_casting: Array[Globals.MagicType]) -> String:
 	var key: String = ""
