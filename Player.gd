@@ -1,6 +1,7 @@
 extends CharacterBody3D
 
 const _ANIM_LERP: float = 0.15
+const _SQUARED_DRAW_RESOLUTION: float = 20.0
 
 @export var speed: float = 10.0
 @export var jump_velocity: float = 10.0
@@ -15,6 +16,7 @@ var casting: bool = false
 @onready var anim_tree: AnimationTree = $AnimationTree
 @onready var spell_draw_display: MeshInstance3D = $Camera3D/SpellDrawDisplay
 
+@onready var spell_view_port: SubViewport = $SpellPanel/SubViewport
 @onready var wand_cursor: Node2D = $SpellPanel/SubViewport/WandCursor
 @onready var wand_trail: Line2D = $SpellPanel/SubViewport/Line2D
 
@@ -35,6 +37,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		if mouse_event.is_action_pressed("player_cast"):
 			# Start a new spell draw
 			wand_trail.clear_points()
+			wand_cursor.position = Vector2(spell_view_port.size / 2)
 			spell_draw_display.set_visible(true)
 			mouse_look_on = false
 			casting = true
@@ -43,6 +46,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			# Stop drawing and cast spell
 			spell_draw_display.set_visible(false)
 			wand_trail.clear_points()
+			wand_cursor.position = Vector2(spell_view_port.size / 2)
 			mouse_look_on = true
 			casting = false
 		
@@ -64,8 +68,23 @@ func _unhandled_input(event: InputEvent) -> void:
 			camera.rotation.x = clamp(camera.rotation.x, -PI/2, PI/2)
 		
 		else:
+			# Move the spell cursor
+			wand_cursor.position += event.relative
+			wand_cursor.position.x = clamp(
+				wand_cursor.position.x, Vector2.ZERO.x, spell_view_port.size.x
+			)
+			wand_cursor.position.y = clamp(
+				wand_cursor.position.y, Vector2.ZERO.y, spell_view_port.size.y
+			)
+			
 			# Draw on the spell surface
-			pass
+			if (
+				wand_trail.get_point_count() == 0
+				or wand_trail.points[-1].distance_squared_to(
+					wand_cursor.position
+				) >= _SQUARED_DRAW_RESOLUTION
+			):
+				wand_trail.add_point(wand_cursor.position)
 
 func _physics_process(delta: float) -> void:
 	if not is_multiplayer_authority(): return
