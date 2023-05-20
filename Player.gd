@@ -8,9 +8,15 @@ const _ANIM_LERP: float = 0.15
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+var mouse_look_on: bool = true
+var casting: bool = false
 
 @onready var camera: Camera3D = $Camera3D
 @onready var anim_tree: AnimationTree = $AnimationTree
+@onready var spell_draw_display: MeshInstance3D = $Camera3D/SpellDrawDisplay
+
+@onready var wand_cursor: Node2D = $SpellPanel/SubViewport/WandCursor
+@onready var wand_trail: Line2D = $SpellPanel/SubViewport/Line2D
 
 func _enter_tree() -> void:
 	set_multiplayer_authority(str(name).to_int())
@@ -24,20 +30,42 @@ func _ready() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if not is_multiplayer_authority(): return
 	
-	if event is InputEventMouseMotion:
-		# Actual model rotation
-		rotate_y(-event.relative.x * turn_speed)
+	if event is InputEventMouseButton:
+		var mouse_event: InputEventMouseButton = event
+		if mouse_event.is_action_pressed("player_cast"):
+			# Start a new spell draw
+			wand_trail.clear_points()
+			spell_draw_display.set_visible(true)
+			mouse_look_on = false
+			casting = true
 		
-		# 1st Person Camera rotation
-		camera.rotate_x(-event.relative.y * turn_speed)
-		camera.rotation.x = clamp(camera.rotation.x, -PI/2, PI/2)
+		if mouse_event.is_action_released("player_cast"):
+			# Stop drawing and cast spell
+			spell_draw_display.set_visible(false)
+			wand_trail.clear_points()
+			mouse_look_on = true
+			casting = false
 		
-		# # Potential for 3rd party Rotations
-		# #   If a camera is nested under a `spring_arm` SpringArm3D
-		# #   which is itself nested under a `spring_arm_pivot` Node2D
-		# spring_arm_pivot.rotate.y(-event.relative.x * turn_speed)
-		# spring_arm.rotate_x(-event.relative.y * turn_speed)
-		# spring_arm.rotation.x = clamp(spring_arm.rotation.x, -PI/4, PI/4)
+		if mouse_event.is_action_pressed("player_look_while_casting"):
+			# Pause casting so we can look around
+			if casting: mouse_look_on = true
+		
+		if mouse_event.is_action_released("player_look_while_casting"):
+			# Commence casting
+			if casting: mouse_look_on = false
+
+	if event is InputEventMouseMotion: 
+		if mouse_look_on:
+			# Actual model rotation
+			rotate_y(-event.relative.x * turn_speed)
+			
+			# 1st Person Camera rotation
+			camera.rotate_x(-event.relative.y * turn_speed)
+			camera.rotation.x = clamp(camera.rotation.x, -PI/2, PI/2)
+		
+		else:
+			# Draw on the spell surface
+			pass
 
 func _physics_process(delta: float) -> void:
 	if not is_multiplayer_authority(): return
