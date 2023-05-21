@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://608hnjhhx8hy"]
 
-[ext_resource type="PackedScene" uid="uid://ujovplolo4sk" path="res://Arena.tscn" id="1_ddlhg"]
 [ext_resource type="Script" path="res://Main.gd" id="1_xrmba"]
+[ext_resource type="PackedScene" uid="uid://b85wnuvbxbeso" path="res://HiddenTown.tscn" id="2_pkbhg"]
 [ext_resource type="Script" path="res://SpellManager.gd" id="3_lntko"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ivr0l"]
@@ -27,7 +27,7 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_i4wu3")
 
-[node name="Arena" parent="." instance=ExtResource("1_ddlhg")]
+[node name="hidden_town" parent="." instance=ExtResource("2_pkbhg")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
