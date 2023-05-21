@@ -50,11 +50,11 @@ func _unhandled_input(event: InputEvent) -> void:
 			var casting_travel: int = wand_trail.get_point_count()
 			wand_trail.clear_points()
 			wand_cursor.position = Vector2(spell_view_port.size / 2)
-			var spell_casting: Array[Globals.MagicType] = spell_grid.complete_spell()
+			var spell_casting: Array = spell_grid.complete_spell()
 			mouse_look_on = true
 			casting = false
 			
-			_trigger_spell(spell_casting, casting_travel)
+			_trigger_spell.rpc(spell_casting, casting_travel)
 		
 		if mouse_event.is_action_pressed("player_look_while_casting"):
 			# Pause casting so we can look around
@@ -116,11 +116,12 @@ func _physics_process(delta: float) -> void:
 	anim_tree.set("parameters/BlendSpace1D/blend_position", velocity.length() / speed)
 	move_and_slide()
 
-func _trigger_spell(spell_casting: Array[Globals.MagicType], casting_travel: int) -> void:
+@rpc("call_local")
+func _trigger_spell(spell_casting: Array, casting_travel: int) -> void:
 	var spell_key: String = _get_spell_key(spell_casting)
 	emit_signal("spell_cast", self, spell_key, casting_travel)
 
-func _get_spell_key(spell_casting: Array[Globals.MagicType]) -> String:
+func _get_spell_key(spell_casting: Array) -> String:
 	var key: String = ""
 	for cast_point in spell_casting:
 		key += Globals.KEY_COMPONENTS[cast_point]
