@@ -39,6 +39,10 @@ func _on_local_host_button_pressed():
 	multiplayer.peer_disconnected.connect(remove_player)
 	
 	add_player(multiplayer.get_unique_id())
+	
+	var success_msg: String = "Success! Join Addresses: %s" % IP.get_local_addresses()
+	print(success_msg)
+	status_label.set_text(success_msg)
 
 func _on_join_button_pressed() -> void:
 	main_menu.hide()

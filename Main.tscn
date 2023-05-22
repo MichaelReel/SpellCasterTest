@@ -112,6 +112,7 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 69.0
 grow_horizontal = 2
+autowrap_mode = 2
 
 [node name="SpellManager" type="Node" parent="."]
 script = ExtResource("3_lntko")
