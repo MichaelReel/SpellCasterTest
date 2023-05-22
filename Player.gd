@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-signal spell_cast(caster: Node3D, spell_key: String, casting_travel: int)
+signal spell_cast(caster: Node3D, spell_key: String, casting_travel: int, target)
 
 const _ANIM_LERP: float = 0.15
 const _SQUARED_DRAW_RESOLUTION: float = 20.0
@@ -13,9 +13,11 @@ const _SQUARED_DRAW_RESOLUTION: float = 20.0
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var mouse_look_on: bool = true
 var casting: bool = false
+var health: int = 100
 
 @onready var camera: Camera3D = $Camera3D
 @onready var anim_tree: AnimationTree = $AnimationTree
+@onready var aiming_raycast: RayCast3D = $Camera3D/RayCast3D
 @onready var spell_draw_display: MeshInstance3D = $Camera3D/SpellDrawDisplay
 @onready var spell_view_port: SubViewport = $SpellPanel/SubViewport
 @onready var wand_cursor: Node2D = $SpellPanel/SubViewport/WandCursor
@@ -54,7 +56,9 @@ func _unhandled_input(event: InputEvent) -> void:
 			mouse_look_on = true
 			casting = false
 			
-			_trigger_spell.rpc(spell_casting, casting_travel)
+			var target = aiming_raycast.get_collider() if aiming_raycast.is_colliding() else null
+				
+			_trigger_spell.rpc(spell_casting, casting_travel, target)
 		
 		if mouse_event.is_action_pressed("player_look_while_casting"):
 			# Pause casting so we can look around
@@ -117,9 +121,13 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 @rpc("call_local")
-func _trigger_spell(spell_casting: Array, casting_travel: int) -> void:
+func _trigger_spell(spell_casting: Array, casting_travel: int, target) -> void:
 	var spell_key: String = _get_spell_key(spell_casting)
-	emit_signal("spell_cast", self, spell_key, casting_travel)
+	emit_signal("spell_cast", self, spell_key, casting_travel, target)
+
+@rpc("any_peer")
+func respawn(spawn_position: Vector3) -> void:
+	position = spawn_position
 
 func _get_spell_key(spell_casting: Array) -> String:
 	var key: String = ""

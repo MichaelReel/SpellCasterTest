@@ -14,17 +14,23 @@ const UPNPResult: GDScript = preload("res://utils/UPNPResultMap.gd")
 var _enet_peer = ENetMultiplayerPeer.new()
 
 @onready var main_menu: PanelContainer = $CanvasLayer/MainMenu
-@onready var address_entry: LineEdit = $CanvasLayer/MainMenu/MarginContainer/VBoxContainer/AddressEntry
+@onready var address_entry: LineEdit = $CanvasLayer/MainMenu/MarginContainer/VBoxContainer/JoinRow/AddressEntry
 @onready var upnp_result: UPNPResult = UPNPResult.new()
 @onready var status_label: Label = $StatusLabel
-@onready var join_button: Button = $CanvasLayer/MainMenu/MarginContainer/VBoxContainer/JoinButton
+@onready var join_button: Button = $CanvasLayer/MainMenu/MarginContainer/VBoxContainer/JoinRow/JoinButton
 @onready var spell_manager: Node = $SpellManager
+@onready var arena: Node3D = $HiddenTown
 
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("quit"):
 		get_tree().quit()
 
 func _on_host_button_pressed() -> void:
+	_on_local_host_button_pressed()
+	
+	upnp_setup()
+
+func _on_local_host_button_pressed():
 	main_menu.hide()
 	
 	_enet_peer.create_server(port, MAX_CLIENTS, MAX_CHANNELS, IN_BANDWIDTH, OUT_BANDWIDTH)
@@ -33,8 +39,6 @@ func _on_host_button_pressed() -> void:
 	multiplayer.peer_disconnected.connect(remove_player)
 	
 	add_player(multiplayer.get_unique_id())
-	
-	upnp_setup()
 
 func _on_join_button_pressed() -> void:
 	main_menu.hide()
@@ -80,5 +84,3 @@ func upnp_setup() -> void:
 	var success_msg: String = "Success! Join Address: %s" % upnp.query_external_address()
 	print(success_msg)
 	status_label.set_text(success_msg)
-
-

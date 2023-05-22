@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://b85wnuvbxbeso"]
+[gd_scene load_steps=10 format=3 uid="uid://b85wnuvbxbeso"]
 
 [ext_resource type="PackedScene" uid="uid://bbs7oqp8e5lup" path="res://blender/hidden_town.blend" id="1_i444t"]
+[ext_resource type="Script" path="res://HiddenTown.gd" id="2_5o5kk"]
 [ext_resource type="Texture2D" uid="uid://3txpk58oyrnv" path="res://addons/kenney_prototype_textures/light/texture_08.png" id="2_op3mn"]
 [ext_resource type="Texture2D" uid="uid://dc2pimgkof4wd" path="res://addons/kenney_prototype_textures/dark/texture_09.png" id="3_4ygcs"]
 [ext_resource type="Texture2D" uid="uid://cy7rsm806gk02" path="res://addons/kenney_prototype_textures/orange/texture_10.png" id="4_0t4n0"]
@@ -22,7 +23,8 @@ uv1_triplanar = true
 transparency = 1
 albedo_color = Color(0.333333, 0.462745, 0.568627, 0.815686)
 
-[node name="hidden_town" instance=ExtResource("1_i444t")]
+[node name="HiddenTown" instance=ExtResource("1_i444t")]
+script = ExtResource("2_5o5kk")
 
 [node name="Plane" parent="." index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
