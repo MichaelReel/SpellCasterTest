@@ -5,7 +5,7 @@ signal spell_cast(caster: Node3D, spell_key: String, casting_travel: int, target
 const _ANIM_LERP: float = 0.15
 const _SQUARED_DRAW_RESOLUTION: float = 20.0
 
-@export var speed: float = 10.0
+@export var speed: float = 5.0
 @export var jump_velocity: float = 10.0
 @export var turn_speed: float = 0.005
 
