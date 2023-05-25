@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://bnyeatbdgyxd4"]
+
+[ext_resource type="Script" path="res://spells/BoltOfFire.gd" id="1_02ji6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q7wfc"]
+shading_mode = 0
+albedo_color = Color(0.980392, 0.427451, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_8wla3"]
+material = SubResource("StandardMaterial3D_q7wfc")
+radius = 0.25
+height = 0.5
+radial_segments = 8
+rings = 4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eutuq"]
+albedo_color = Color(1, 0.333333, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_k5fmh"]
+material = SubResource("StandardMaterial3D_eutuq")
+top_radius = 0.25
+bottom_radius = 0.0
+height = 1.0
+radial_segments = 8
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_474cx"]
+radius = 0.25
+
+[node name="BoltOfFire" type="Area3D"]
+script = ExtResource("1_02ji6")
+
+[node name="DebugBody" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_8wla3")
+
+[node name="Tail" type="MeshInstance3D" parent="DebugBody"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0.5)
+mesh = SubResource("CylinderMesh_k5fmh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_474cx")

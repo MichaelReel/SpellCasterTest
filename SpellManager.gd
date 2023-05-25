@@ -1,6 +1,9 @@
 extends Node
 
 @onready var arena: Node3D = $"../HiddenTown"
+@onready var BoltOfFire: PackedScene = preload("res://spells/BoltOfFire.tscn")
+
+const bolt_of_fire_velocity: float = 10.0
 
 var _spells: Dictionary = {
 	"BTSLE": respawn,
@@ -13,6 +16,7 @@ var _spells: Dictionary = {
 	"ELSTB": respawn,
 	"SLEBT": respawn,
 	"STBEL": respawn,
+	"FT": bolt_of_fire,
 }
 
 func register_caster(caster: Node) -> void:
@@ -44,3 +48,16 @@ func respawn(caster: Node3D, _casting_travel: int) -> void:
 		caster.respawn.rpc_id(caster.get_multiplayer_authority(), next_spawn)
 		print(str(caster) + " cast respawn")
 
+func bolt_of_fire(caster: Node3D, _casting_travel: int) -> void:
+	var bolt: Area3D = BoltOfFire.instantiate()
+	var pos: Vector3 = caster.global_position + Vector3.FORWARD
+	var direction: Vector3 = Vector3.BACK
+	
+	if caster.has_method("get_projectile_transform"):
+		var transform: Transform3D = caster.get_projectile_transform()
+		pos = transform.origin
+		direction = -transform.basis.z
+			
+	owner.add_child(bolt)
+	bolt.global_position = pos
+	bolt.velocity = direction * bolt_of_fire_velocity

@@ -23,6 +23,7 @@ var health: int = 100
 @onready var wand_cursor: Node2D = $SpellPanel/SubViewport/WandCursor
 @onready var wand_trail: Line2D = $SpellPanel/SubViewport/Line2D
 @onready var spell_grid: Node2D = $SpellPanel/SubViewport/SpellGrid
+@onready var projectile_point: Node3D = $Camera3D/ProjectilePoint
 
 func _enter_tree() -> void:
 	set_multiplayer_authority(str(name).to_int())
@@ -119,6 +120,9 @@ func _physics_process(delta: float) -> void:
 
 	anim_tree.set("parameters/BlendSpace1D/blend_position", velocity.length() / speed)
 	move_and_slide()
+
+func get_projectile_transform() -> Transform3D:
+	return projectile_point.global_transform
 
 @rpc("call_local")
 func _trigger_spell(spell_casting: Array, casting_travel: int, target) -> void:
