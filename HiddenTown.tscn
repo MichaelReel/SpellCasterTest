@@ -32,3 +32,22 @@ surface_material_override/0 = SubResource("StandardMaterial3D_bywr3")
 surface_material_override/1 = SubResource("StandardMaterial3D_r133s")
 surface_material_override/2 = SubResource("StandardMaterial3D_ahfic")
 surface_material_override/3 = SubResource("StandardMaterial3D_1hapc")
+
+[node name="Spawns" type="Node" parent="." index="1"]
+
+[node name="BridgeA" type="Node3D" parent="Spawns" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 0, -7)
+
+[node name="MidCourt" type="Node3D" parent="Spawns" index="1"]
+
+[node name="BridgeCA" type="Node3D" parent="Spawns" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29, 0, -5)
+
+[node name="BridgeCB" type="Node3D" parent="Spawns" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 0, -36)
+
+[node name="LowerCourt" type="Node3D" parent="Spawns" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, -2.5, -35)
+
+[node name="UpperCourt" type="Node3D" parent="Spawns" index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 5, -5)

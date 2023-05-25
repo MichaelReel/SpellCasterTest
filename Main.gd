@@ -19,7 +19,6 @@ var _enet_peer = ENetMultiplayerPeer.new()
 @onready var status_label: Label = $StatusLabel
 @onready var join_button: Button = $CanvasLayer/MainMenu/MarginContainer/VBoxContainer/JoinRow/JoinButton
 @onready var spell_manager: Node = $SpellManager
-@onready var arena: Node3D = $HiddenTown
 
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("quit"):

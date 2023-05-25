@@ -1,5 +1,7 @@
 extends Node
 
+@onready var arena: Node3D = $"../HiddenTown"
+
 var _spells: Dictionary = {
 	"BTSLE": respawn,
 	"BELST": respawn,
@@ -30,9 +32,15 @@ func respawn(caster: Node3D, _casting_travel: int) -> void:
 	if not caster.has_method("respawn"):
 		return
 	
+	var next_spawn: Vector3 = Vector3.ZERO
+	
+	if arena.has_method("get_next_spawn"):
+		print("Getting next spawn from arena")
+		next_spawn = arena.get_next_spawn()
+	
 	if caster.get_multiplayer_authority() == 1:
-		caster.respawn(Vector3.ZERO)
+		caster.respawn(next_spawn)
 	else:
-		caster.respawn.rpc_id(caster.get_multiplayer_authority(), Vector3.ZERO)
+		caster.respawn.rpc_id(caster.get_multiplayer_authority(), next_spawn)
 		print(str(caster) + " cast respawn")
 
