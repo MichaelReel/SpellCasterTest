@@ -104,7 +104,7 @@ text = "Join"
 alignment = 2
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://Player.tscn")
+_spawnable_scenes = PackedStringArray("res://Player.tscn", "res://spells/BoltOfFire.tscn", "res://spells/BoltOfFireExplosion.tscn")
 spawn_path = NodePath("..")
 
 [node name="StatusLabel" type="Label" parent="."]

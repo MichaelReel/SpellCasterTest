@@ -53,6 +53,11 @@ player_look_while_casting={
 ]
 }
 
+[layer_names]
+
+3d_physics/layer_1="Base Terrain Collision"
+3d_physics/layer_2="Entity Collision"
+
 [physics]
 
 3d/default_gravity=20.0

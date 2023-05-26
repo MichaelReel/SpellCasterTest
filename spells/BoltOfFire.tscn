@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bnyeatbdgyxd4"]
+[gd_scene load_steps=8 format=3 uid="uid://bnyeatbdgyxd4"]
 
 [ext_resource type="Script" path="res://spells/BoltOfFire.gd" id="1_02ji6"]
 
@@ -26,7 +26,17 @@ radial_segments = 8
 [sub_resource type="SphereShape3D" id="SphereShape3D_474cx"]
 radius = 0.25
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_1rwir"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/sync = true
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/sync = true
+
 [node name="BoltOfFire" type="Area3D"]
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_02ji6")
 
 [node name="DebugBody" type="MeshInstance3D" parent="."]
@@ -38,3 +48,9 @@ mesh = SubResource("CylinderMesh_k5fmh")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_474cx")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_1rwir")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
