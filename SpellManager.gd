@@ -59,16 +59,17 @@ func bolt_of_fire(caster: Node3D, _casting_travel: int) -> void:
 		pos = transform.origin
 		direction = -transform.basis.z
 			
-	owner.add_child(bolt)
+	owner.add_child(bolt, true)
 	bolt.connect("bolt_of_fire_collision", bolt_of_fire_collision)
 	bolt.global_position = pos
 	bolt.velocity = direction * bolt_of_fire_velocity
+	bolt.look_at(pos + direction)
 	bolt.caster = caster
 
 func bolt_of_fire_collision(bolt: Area3D) -> void:
 	bolt.disconnect("bolt_of_fire_collision", bolt_of_fire_collision)
 	var explosion: Area3D = BoltOfFireExplosion.instantiate()
-	owner.add_child(explosion)
+	owner.add_child(explosion, true)
 	explosion.global_position = bolt.global_position
 	explosion.caster = bolt.caster
 	

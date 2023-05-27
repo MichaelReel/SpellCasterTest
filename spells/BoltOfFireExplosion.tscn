@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://bmrgki1sipijj"]
+[gd_scene load_steps=25 format=3 uid="uid://bmrgki1sipijj"]
 
 [ext_resource type="Script" path="res://spells/BoltOfFireExplosion.gd" id="1_x8ww0"]
+[ext_resource type="Texture2D" uid="uid://dbc5tvrpbetsm" path="res://addons/kenney_particle_pack/flame_04.png" id="2_yc4os"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_1glsv"]
 radius = 0.0
@@ -13,6 +14,33 @@ albedo_color = Color(0.898039, 0.882353, 0.866667, 1)
 material = SubResource("StandardMaterial3D_wbemc")
 radius = 0.0
 height = 0.0
+
+[sub_resource type="Animation" id="Animation_xyatp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OmniLight3D:light_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.807843, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("OmniLight3D:light_energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [3.0]
+}
 
 [sub_resource type="Animation" id="Animation_61j81"]
 resource_name = "explode"
@@ -130,24 +158,34 @@ tracks/9/keys = {
 "points": PackedFloat32Array(10, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 1)
 }
-
-[sub_resource type="Animation" id="Animation_6ue67"]
-length = 0.001
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:damage")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("OmniLight3D:light_color")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 0.792157, 0.443137, 1), Color(0.807843, 1, 1, 1), Color(0.8, 0.203922, 0.141176, 1)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("OmniLight3D:light_energy")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 0.3, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.0, 10.0, 0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_e4ikd"]
 _data = {
-"RESET": SubResource("Animation_6ue67"),
+"RESET": SubResource("Animation_xyatp"),
 "explode": SubResource("Animation_61j81")
 }
 
@@ -156,9 +194,100 @@ properties/0/path = NodePath(".:position")
 properties/0/spawn = true
 properties/0/sync = true
 
+[sub_resource type="Gradient" id="Gradient_psi10"]
+offsets = PackedFloat32Array(0, 0.166189, 0.593123, 0.765043, 0.91404, 1)
+colors = PackedColorArray(0, 0, 1, 0.690196, 1, 1, 1, 1, 0.792157, 0.639216, 0, 1, 0.945098, 0.0235294, 0, 1, 0, 0, 0, 0.65098, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_s6rk0"]
+gradient = SubResource("Gradient_psi10")
+
+[sub_resource type="Curve" id="Curve_vxnbf"]
+_data = [Vector2(0, 0), 0.0, 3.308, 0, 0, Vector2(0.0342105, 0.372727), 0.0, 0.0, 0, 0, Vector2(1, 0.463636), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_tmhjb"]
+curve = SubResource("Curve_vxnbf")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ty1dk"]
+resource_local_to_scene = true
+direction = Vector3(0, 0, 0)
+spread = 90.0
+gravity = Vector3(0, 3, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 2.0
+angular_velocity_min = -720.0
+angular_velocity_max = 720.0
+tangential_accel_min = -20.0
+tangential_accel_max = 20.0
+angle_min = -720.0
+angle_max = 720.0
+scale_min = 0.1
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_tmhjb")
+color_ramp = SubResource("GradientTexture1D_s6rk0")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_70no6"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("2_yc4os")
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_rbjpq"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_70no6")
+orientation = 2
+
+[sub_resource type="Gradient" id="Gradient_8aio1"]
+offsets = PackedFloat32Array(0, 0.166189, 0.593123, 0.765043, 0.91404, 1)
+colors = PackedColorArray(0, 0, 1, 0.690196, 1, 1, 1, 1, 0.792157, 0.639216, 0, 1, 0.945098, 0.0235294, 0, 1, 0, 0, 0, 0.65098, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_w247e"]
+gradient = SubResource("Gradient_8aio1")
+
+[sub_resource type="Curve" id="Curve_vata3"]
+_data = [Vector2(0, 0), 0.0, 13.594, 0, 0, Vector2(0.25, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_jk3ks"]
+curve = SubResource("Curve_vata3")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_m8n4y"]
+resource_local_to_scene = true
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_min = 5.0
+initial_velocity_max = 10.0
+angular_velocity_min = -360.0
+angular_velocity_max = 360.0
+damping_min = 1.04
+damping_max = 1.04
+angle_min = -720.0
+angle_max = 720.0
+scale_min = 0.1
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_jk3ks")
+color_ramp = SubResource("GradientTexture1D_w247e")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1410m"]
+load_path = "res://.godot/imported/star_04.png-9f1018fb6e102b8505c238c58ed1695a.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gslax"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = SubResource("CompressedTexture2D_1410m")
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_4vqmk"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_gslax")
+orientation = 2
+
 [node name="FireBoltExplosion" type="Area3D"]
 script = ExtResource("1_x8ww0")
-damage = 0.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_1glsv")
@@ -174,3 +303,26 @@ libraries = {
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_s7xps")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 64
+one_shot = true
+explosiveness = 1.0
+draw_order = 3
+process_material = SubResource("ParticleProcessMaterial_ty1dk")
+draw_pass_1 = SubResource("PlaneMesh_rbjpq")
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 32
+one_shot = true
+explosiveness = 1.0
+draw_order = 3
+transform_align = 1
+process_material = SubResource("ParticleProcessMaterial_m8n4y")
+draw_pass_1 = SubResource("PlaneMesh_4vqmk")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_color = Color(0.807843, 1, 1, 1)
+light_energy = 3.0
