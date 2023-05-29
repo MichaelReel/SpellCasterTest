@@ -62,8 +62,9 @@ func bolt_of_fire(caster: Node3D, _casting_travel: int) -> void:
 	owner.add_child(bolt, true)
 	bolt.connect("bolt_of_fire_collision", bolt_of_fire_collision)
 	bolt.global_position = pos
+	print("direction: " + str(direction))
 	bolt.velocity = direction * bolt_of_fire_velocity
-	bolt.look_at(pos + direction)
+	bolt.look_at(bolt.global_position + direction)
 	bolt.caster = caster
 
 func bolt_of_fire_collision(bolt: Area3D) -> void:

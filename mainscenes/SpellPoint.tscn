@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://c2gd6kbl7hbew"]
 
-[ext_resource type="Texture2D" uid="uid://dv5odjyipasr1" path="res://addons/kenney_particle_pack/light_01.png" id="1_dqvu7"]
-[ext_resource type="Script" path="res://SpellPoint.gd" id="1_rbena"]
-[ext_resource type="Texture2D" uid="uid://cpk3woamjy7qf" path="res://addons/kenney_particle_pack/light_03.png" id="2_hicmc"]
+[ext_resource type="Texture2D" uid="uid://djyyklbakf8q4" path="res://addons/kenney_particle_pack/light_01.png" id="1_dqvu7"]
+[ext_resource type="Script" path="res://mainscenes/SpellPoint.gd" id="1_rbena"]
+[ext_resource type="Texture2D" uid="uid://bticvn7rp511i" path="res://addons/kenney_particle_pack/light_03.png" id="2_hicmc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_js7dm"]
 radius = 32.0

@@ -1,21 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://608hnjhhx8hy"]
+[gd_scene load_steps=6 format=3 uid="uid://608hnjhhx8hy"]
 
-[ext_resource type="Script" path="res://Main.gd" id="1_xrmba"]
-[ext_resource type="PackedScene" uid="uid://b85wnuvbxbeso" path="res://HiddenTown.tscn" id="2_pkbhg"]
-[ext_resource type="Script" path="res://SpellManager.gd" id="3_lntko"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ivr0l"]
-sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-
-[sub_resource type="Sky" id="Sky_wafh8"]
-sky_material = SubResource("ProceduralSkyMaterial_ivr0l")
-
-[sub_resource type="Environment" id="Environment_i4wu3"]
-background_mode = 2
-sky = SubResource("Sky_wafh8")
-tonemap_mode = 2
-glow_enabled = true
+[ext_resource type="Script" path="res://mainscenes/MultiplayerWorld.gd" id="1_aagxo"]
+[ext_resource type="PackedScene" uid="uid://b85wnuvbxbeso" path="res://HiddenTown.tscn" id="2_o2kwi"]
+[ext_resource type="Script" path="res://mainscenes/SpellManager.gd" id="3_fcief"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_x4jln"]
 device = -1
@@ -24,17 +11,10 @@ keycode = 4194309
 [sub_resource type="Shortcut" id="Shortcut_hk7en"]
 events = [SubResource("InputEventKey_x4jln")]
 
-[node name="World" type="Node"]
-script = ExtResource("1_xrmba")
+[node name="MultiplayerWorld" type="Node"]
+script = ExtResource("1_aagxo")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
-shadow_enabled = true
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_i4wu3")
-
-[node name="HiddenTown" parent="." instance=ExtResource("2_pkbhg")]
+[node name="HiddenTown" parent="." instance=ExtResource("2_o2kwi")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -104,7 +84,7 @@ text = "Join"
 alignment = 2
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://Player.tscn", "res://spells/BoltOfFire.tscn", "res://spells/BoltOfFireExplosion.tscn")
+_spawnable_scenes = PackedStringArray("res://spells/BoltOfFire.tscn", "res://spells/BoltOfFireExplosion.tscn")
 spawn_path = NodePath("..")
 
 [node name="StatusLabel" type="Label" parent="."]
@@ -115,7 +95,7 @@ grow_horizontal = 2
 autowrap_mode = 2
 
 [node name="SpellManager" type="Node" parent="."]
-script = ExtResource("3_lntko")
+script = ExtResource("3_fcief")
 
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HostRow/HostButton" to="." method="_on_host_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HostRow/LocalHostButton" to="." method="_on_local_host_button_pressed"]

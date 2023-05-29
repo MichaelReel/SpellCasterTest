@@ -6,7 +6,7 @@ const MAX_CHANNELS: int = 0
 const IN_BANDWIDTH: int = 0
 const OUT_BANDWIDTH: int = 0
 
-const Player: PackedScene = preload("res://Player.tscn")
+const Player: PackedScene = preload("res://mainscenes/Player.tscn")
 const UPNPResult: GDScript = preload("res://utils/UPNPResultMap.gd")
 
 @export var port: int = 9999

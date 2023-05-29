@@ -1,0 +1,73 @@
+[gd_scene load_steps=13 format=3 uid="uid://b85wnuvbxbeso"]
+
+[ext_resource type="PackedScene" uid="uid://cko33rq4d5k0a" path="res://blender/hidden_town.blend" id="1_h7yoj"]
+[ext_resource type="Script" path="res://levels/HiddenTown.gd" id="2_8c50w"]
+[ext_resource type="Texture2D" uid="uid://cirvalie3ul66" path="res://addons/kenney_prototype_textures/light/texture_08.png" id="3_0lx54"]
+[ext_resource type="Texture2D" uid="uid://j62njg1qgo1u" path="res://addons/kenney_prototype_textures/dark/texture_09.png" id="4_tuy6c"]
+[ext_resource type="Texture2D" uid="uid://djaj2ui0p6vle" path="res://addons/kenney_prototype_textures/orange/texture_10.png" id="5_llv6w"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_k3yxp"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_wafh8"]
+sky_material = SubResource("ProceduralSkyMaterial_k3yxp")
+
+[sub_resource type="Environment" id="Environment_h2nod"]
+background_mode = 2
+sky = SubResource("Sky_wafh8")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bywr3"]
+albedo_color = Color(0.666667, 0.341176, 0.133333, 1)
+albedo_texture = ExtResource("3_0lx54")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r133s"]
+albedo_texture = ExtResource("4_tuy6c")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ahfic"]
+albedo_texture = ExtResource("5_llv6w")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1hapc"]
+transparency = 1
+albedo_color = Color(0.333333, 0.462745, 0.568627, 0.815686)
+
+[node name="HiddenTown" instance=ExtResource("1_h7yoj")]
+script = ExtResource("2_8c50w")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." index="0"]
+transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="1"]
+environment = SubResource("Environment_h2nod")
+
+[node name="Plane" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_bywr3")
+surface_material_override/1 = SubResource("StandardMaterial3D_r133s")
+surface_material_override/2 = SubResource("StandardMaterial3D_ahfic")
+surface_material_override/3 = SubResource("StandardMaterial3D_1hapc")
+
+[node name="Spawns" type="Node" parent="." index="3"]
+
+[node name="BridgeA" type="Node3D" parent="Spawns" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 0, -7)
+
+[node name="MidCourt" type="Node3D" parent="Spawns" index="1"]
+
+[node name="BridgeCA" type="Node3D" parent="Spawns" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29, 0, -5)
+
+[node name="BridgeCB" type="Node3D" parent="Spawns" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 0, -36)
+
+[node name="LowerCourt" type="Node3D" parent="Spawns" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, -2.5, -35)
+
+[node name="UpperCourt" type="Node3D" parent="Spawns" index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 5, -5)
