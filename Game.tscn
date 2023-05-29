@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://ct4va0wcvmvca"]
-
-[ext_resource type="PackedScene" uid="uid://608hnjhhx8hy" path="res://mainscenes/MultiplayerWorld.tscn" id="1_68vuc"]
-
-[node name="Game" type="Node"]
-process_mode = 3
-
-[node name="MultiplayerWorld" parent="." instance=ExtResource("1_68vuc")]

@@ -1,7 +1,7 @@
 extends Node2D
 
 
-var current_casting: Array[Globals.MagicType] = []
+var current_casting: Array[Enums.MagicType] = []
 
 @onready var spell_points: Array[Node] = [
 	$Inner/FirePoint,
@@ -14,7 +14,7 @@ var current_casting: Array[Globals.MagicType] = []
 	$Outer/ThrustPoint,
 ]
 
-func complete_spell() -> Array[Globals.MagicType]:
+func complete_spell() -> Array[Enums.MagicType]:
 	# Reset the points
 	for spell_point in spell_points:
 		spell_point.reset()
@@ -25,5 +25,5 @@ func complete_spell() -> Array[Globals.MagicType]:
 	return spell_casting
 
 
-func _on_point_activated(magic_type: Globals.MagicType):
+func _on_point_activated(magic_type: Enums.MagicType):
 	current_casting.append(magic_type)

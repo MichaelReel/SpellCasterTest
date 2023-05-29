@@ -1,9 +1,9 @@
 extends Node2D
 
-signal point_activated(magic_type: Globals.MagicType)
+signal point_activated(magic_type: Enums.MagicType)
 
 @export var color: Color = Color.CADET_BLUE
-@export var type: Globals.MagicType = Globals.MagicType.AIR
+@export var type: Enums.MagicType = Enums.MagicType.AIR
 
 @onready var activated_sprite: Sprite2D = $ActivatedSprite
 

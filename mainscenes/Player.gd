@@ -4,6 +4,7 @@ signal spell_cast(caster: Node3D, spell_key: String, casting_travel: int, target
 
 const _ANIM_LERP: float = 0.15
 const _SQUARED_DRAW_RESOLUTION: float = 20.0
+const _LONGITUDINAL_RANGE: float = PI / 1.98
 
 @export var speed: float = 5.0
 @export var jump_velocity: float = 10.0
@@ -76,7 +77,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			
 			# 1st Person Camera rotation
 			camera.rotate_x(-event.relative.y * turn_speed)
-			camera.rotation.x = clamp(camera.rotation.x, -PI/2, PI/2)
+			camera.rotation.x = clamp(camera.rotation.x, -_LONGITUDINAL_RANGE, _LONGITUDINAL_RANGE)
 		
 		else:
 			# Move the spell cursor

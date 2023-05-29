@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://608hnjhhx8hy"]
 
 [ext_resource type="Script" path="res://mainscenes/MultiplayerWorld.gd" id="1_aagxo"]
-[ext_resource type="PackedScene" uid="uid://b85wnuvbxbeso" path="res://HiddenTown.tscn" id="2_o2kwi"]
+[ext_resource type="PackedScene" uid="uid://b85wnuvbxbeso" path="res://levels/HiddenTown.tscn" id="2_o2kwi"]
 [ext_resource type="Script" path="res://mainscenes/SpellManager.gd" id="3_fcief"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_x4jln"]
@@ -84,7 +84,7 @@ text = "Join"
 alignment = 2
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://spells/BoltOfFire.tscn", "res://spells/BoltOfFireExplosion.tscn")
+_spawnable_scenes = PackedStringArray("res://spells/BoltOfFire.tscn", "res://spells/BoltOfFireExplosion.tscn", "res://mainscenes/Player.tscn")
 spawn_path = NodePath("..")
 
 [node name="StatusLabel" type="Label" parent="."]

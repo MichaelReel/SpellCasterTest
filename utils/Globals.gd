@@ -1,6 +1,17 @@
-extends Object
+extends Node
 
-var upnp_result_string: Array[String] = [
+const KEY_COMPONENTS: Dictionary = {
+	Enums.MagicType.FIRE: "F",
+	Enums.MagicType.AIR: "A",
+	Enums.MagicType.WATER: "W",
+	Enums.MagicType.EARTH: "E",
+	Enums.MagicType.SPIRIT: "S",
+	Enums.MagicType.BLOOD: "B",
+	Enums.MagicType.LIGHTNING: "L",
+	Enums.MagicType.THRUST: "T",
+}
+
+const UPNP_RESULT_STRINGS: Array[String] = [
 	"UPNP_RESULT_SUCCESS - UPNP command or discovery was successful.",
 	"UPNP_RESULT_NOT_AUTHORIZED - Not authorized to use the command on the UPNPDevice. May be returned when the user disabled UPNP on their router.",
 	"UPNP_RESULT_PORT_MAPPING_NOT_FOUND - No port mapping was found for the given port, protocol combination on the given UPNPDevice.",

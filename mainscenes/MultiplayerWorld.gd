@@ -7,7 +7,6 @@ const IN_BANDWIDTH: int = 0
 const OUT_BANDWIDTH: int = 0
 
 const Player: PackedScene = preload("res://mainscenes/Player.tscn")
-const UPNPResult: GDScript = preload("res://utils/UPNPResultMap.gd")
 
 @export var port: int = 9999
 
@@ -15,14 +14,10 @@ var _enet_peer = ENetMultiplayerPeer.new()
 
 @onready var main_menu: PanelContainer = $CanvasLayer/MainMenu
 @onready var address_entry: LineEdit = $CanvasLayer/MainMenu/MarginContainer/VBoxContainer/JoinRow/AddressEntry
-@onready var upnp_result: UPNPResult = UPNPResult.new()
+
 @onready var status_label: Label = $StatusLabel
 @onready var join_button: Button = $CanvasLayer/MainMenu/MarginContainer/VBoxContainer/JoinRow/JoinButton
 @onready var spell_manager: Node = $SpellManager
-
-func _unhandled_input(_event: InputEvent) -> void:
-	if Input.is_action_just_pressed("quit"):
-		get_tree().quit()
 
 func _on_host_button_pressed() -> void:
 	_on_local_host_button_pressed()
@@ -69,7 +64,7 @@ func upnp_setup() -> void:
 	var discover_result = upnp.discover()
 	
 	if not (discover_result == UPNP.UPNP_RESULT_SUCCESS):
-		var err_msg: String = "UPNP Discover Failed! Error %s" % upnp_result.upnp_result_string[discover_result]
+		var err_msg: String = "UPNP Discover Failed! Error %s" % Globals.UPNP_RESULT_STRINGS[discover_result]
 		printerr(err_msg)
 		status_label.set_text(err_msg)
 	
@@ -80,7 +75,7 @@ func upnp_setup() -> void:
 	
 	var map_result = upnp.add_port_mapping(port)
 	if not (map_result == UPNP.UPNP_RESULT_SUCCESS):
-		var err_msg: String = "UPNP Port Mapping Failed! Error %s" % upnp_result.upnp_result_string[map_result]
+		var err_msg: String = "UPNP Port Mapping Failed! Error %s" % Globals.UPNP_RESULT_STRINGS[map_result]
 		printerr(err_msg)
 		status_label.set_text(err_msg)
 	
