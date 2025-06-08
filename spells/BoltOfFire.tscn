@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://bnyeatbdgyxd4"]
 
-[ext_resource type="Script" path="res://spells/BoltOfFire.gd" id="1_02ji6"]
+[ext_resource type="Script" uid="uid://2fw7kw0ewh5j" path="res://spells/BoltOfFire.gd" id="1_02ji6"]
 [ext_resource type="Texture2D" uid="uid://d2aaqfew6bb2d" path="res://addons/kenney_particle_pack/fire_02.png" id="2_pim8k"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q7wfc"]
@@ -30,10 +30,10 @@ radius = 0.25
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_1rwir"]
 properties/0/path = NodePath(".:position")
 properties/0/spawn = true
-properties/0/sync = true
+properties/0/replication_mode = 1
 properties/1/path = NodePath(".:rotation")
 properties/1/spawn = true
-properties/1/sync = true
+properties/1/replication_mode = 1
 
 [sub_resource type="Gradient" id="Gradient_tlk8h"]
 offsets = PackedFloat32Array(0, 0.437276, 0.698925, 0.87276, 1)
@@ -44,15 +44,15 @@ gradient = SubResource("Gradient_tlk8h")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_glng1"]
 resource_local_to_scene = true
+angle_min = -360.0
+angle_max = 360.0
 direction = Vector3(0, 0, 0)
 spread = 180.0
-gravity = Vector3(0, 0, 0)
 initial_velocity_min = 2.0
 initial_velocity_max = 2.0
 angular_velocity_min = -360.0
 angular_velocity_max = 360.0
-angle_min = -360.0
-angle_max = 360.0
+gravity = Vector3(0, 0, 0)
 color_ramp = SubResource("GradientTexture1D_4dv8y")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n6xoy"]

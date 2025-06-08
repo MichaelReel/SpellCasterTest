@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://b85wnuvbxbeso"]
 
 [ext_resource type="PackedScene" uid="uid://cko33rq4d5k0a" path="res://blender/hidden_town.blend" id="1_h7yoj"]
-[ext_resource type="Script" path="res://levels/HiddenTown.gd" id="2_8c50w"]
+[ext_resource type="Script" uid="uid://s4xjc8qlqqys" path="res://levels/HiddenTown.gd" id="2_8c50w"]
 [ext_resource type="Texture2D" uid="uid://cirvalie3ul66" path="res://addons/kenney_prototype_textures/light/texture_08.png" id="3_0lx54"]
 [ext_resource type="Texture2D" uid="uid://j62njg1qgo1u" path="res://addons/kenney_prototype_textures/dark/texture_09.png" id="4_tuy6c"]
 [ext_resource type="Texture2D" uid="uid://djaj2ui0p6vle" path="res://addons/kenney_prototype_textures/orange/texture_10.png" id="5_llv6w"]

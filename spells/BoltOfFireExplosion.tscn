@@ -1,6 +1,6 @@
 [gd_scene load_steps=25 format=3 uid="uid://bmrgki1sipijj"]
 
-[ext_resource type="Script" path="res://spells/BoltOfFireExplosion.gd" id="1_x8ww0"]
+[ext_resource type="Script" uid="uid://44kuywlmba6c" path="res://spells/BoltOfFireExplosion.gd" id="1_x8ww0"]
 [ext_resource type="Texture2D" uid="uid://dbc5tvrpbetsm" path="res://addons/kenney_particle_pack/flame_04.png" id="2_yc4os"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_1glsv"]
@@ -185,14 +185,14 @@ tracks/11/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_e4ikd"]
 _data = {
-"RESET": SubResource("Animation_xyatp"),
-"explode": SubResource("Animation_61j81")
+&"RESET": SubResource("Animation_xyatp"),
+&"explode": SubResource("Animation_61j81")
 }
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_s7xps"]
 properties/0/path = NodePath(".:position")
 properties/0/spawn = true
-properties/0/sync = true
+properties/0/replication_mode = 1
 
 [sub_resource type="Gradient" id="Gradient_psi10"]
 offsets = PackedFloat32Array(0, 0.166189, 0.593123, 0.765043, 0.91404, 1)
@@ -210,17 +210,17 @@ curve = SubResource("Curve_vxnbf")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ty1dk"]
 resource_local_to_scene = true
+angle_min = -720.0
+angle_max = 720.0
 direction = Vector3(0, 0, 0)
 spread = 90.0
-gravity = Vector3(0, 3, 0)
 initial_velocity_min = 1.0
 initial_velocity_max = 2.0
 angular_velocity_min = -720.0
 angular_velocity_max = 720.0
+gravity = Vector3(0, 3, 0)
 tangential_accel_min = -20.0
 tangential_accel_max = 20.0
-angle_min = -720.0
-angle_max = 720.0
 scale_min = 0.1
 scale_max = 3.0
 scale_curve = SubResource("CurveTexture_tmhjb")
@@ -255,6 +255,8 @@ curve = SubResource("Curve_vata3")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_m8n4y"]
 resource_local_to_scene = true
+angle_min = -720.0
+angle_max = 720.0
 direction = Vector3(0, 0, 0)
 spread = 180.0
 initial_velocity_min = 5.0
@@ -263,8 +265,6 @@ angular_velocity_min = -360.0
 angular_velocity_max = 360.0
 damping_min = 1.04
 damping_max = 1.04
-angle_min = -720.0
-angle_max = 720.0
 scale_min = 0.1
 scale_max = 3.0
 scale_curve = SubResource("CurveTexture_jk3ks")
@@ -296,10 +296,10 @@ shape = SubResource("SphereShape3D_1glsv")
 mesh = SubResource("SphereMesh_qdfdc")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "explode"
 libraries = {
-"": SubResource("AnimationLibrary_e4ikd")
+&"": SubResource("AnimationLibrary_e4ikd")
 }
+autoplay = "explode"
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_s7xps")
